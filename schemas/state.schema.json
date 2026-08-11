@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://adf.dev/schemas/state.schema.json",
+  "title": "ADF Project State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "lifecycle",
+    "currentGate",
+    "activeFeature",
+    "approvals",
+    "nextAction"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "lifecycle": {
+      "enum": [
+        "bootstrap",
+        "intake",
+        "project-ready",
+        "feature-selection",
+        "specification",
+        "planning",
+        "implementation",
+        "verification",
+        "closed",
+        "blocked"
+      ]
+    },
+    "currentGate": { "enum": ["G0", "G1", "G2", "G3", "G4", "G5", "G6"] },
+    "activeFeature": { "type": ["string", "null"] },
+    "approvals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["G1", "G2", "G3"],
+      "properties": {
+        "G1": { "type": "boolean" },
+        "G2": { "type": "boolean" },
+        "G3": { "type": "boolean" }
+      }
+    },
+    "nextAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt"],
+      "properties": {
+        "command": { "type": "string", "minLength": 1 },
+        "prompt": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+repository: "https://github.com/mattpocock/skills.git"
+commit: "84fdeffd12f2ee307994d1eb6feb48173b6e0502"
+license: "MIT"
+skills:
+  - name: "grilling"
+    upstreamName: "grilling"
+    sourcePath: "skills/productivity/grilling/SKILL.md"
+    templatePath: "templates/skills/vendor/grilling/SKILL.md"
+    originalSha256: "fa5c1e5ee76b1c8f1ae56101f52c9e239de75d5c578adc61227b92d10b7e52ef"
+    adaptedSha256: "8263d127d11d69d91ef547dce98d463054c337c095e9a232039ecfc1eca1ee30"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Add a local fact-finding fallback when subagents are unavailable."
+    dependencies:
+      []
+    resources:
+      []
+  - name: "grill-with-docs"
+    upstreamName: "grill-with-docs"
+    sourcePath: "skills/engineering/grill-with-docs/SKILL.md"
+    templatePath: "templates/skills/vendor/grill-with-docs/SKILL.md"
+    originalSha256: "610d091047bcfb9db0f75c057d15538481a721111579fc5ec7f83ad9131a2165"
+    adaptedSha256: "bc70af2bffb6c73774e641fcf2e230aca5236a5fd629a430f4f6428a48eab86a"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Make the two skill dependencies explicit."
+      - "Remove unsupported invocation metadata."
+    dependencies:
+      - "grilling"
+      - "domain-modeling"
+    resources:
+      []
+  - name: "domain-modeling"
+    upstreamName: "domain-modeling"
+    sourcePath: "skills/engineering/domain-modeling/SKILL.md"
+    templatePath: "templates/skills/vendor/domain-modeling/SKILL.md"
+    originalSha256: "152e2c97239affb12a60c5f4a7e74ab546a49ae169688c81f4e2ccc42dafa579"
+    adaptedSha256: "8f4029259f85a87637a5db6481838e9a1e3a83577c880e2f59b70269f720402c"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Redirect the glossary to docs/product/glossary.md."
+      - "Redirect architectural decisions to docs/decisions/."
+    dependencies:
+      []
+    resources:
+      - "ADR-FORMAT.md"
+      - "CONTEXT-FORMAT.md"
+  - name: "codebase-design"
+    upstreamName: "codebase-design"
+    sourcePath: "skills/engineering/codebase-design/SKILL.md"
+    templatePath: "templates/skills/vendor/codebase-design/SKILL.md"
+    originalSha256: "a8d50abac5a4018f60e1d911d4b6f4e36454ca14d6c390c0695a578c7de65dad"
+    adaptedSha256: "5ba657ee8a44f88c4c086c9fe2540232f76fa2575f0f09cfa1910352444581c3"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Add a sequential design fallback when subagents are unavailable."
+    dependencies:
+      []
+    resources:
+      - "DEEPENING.md"
+      - "DESIGN-IT-TWICE.md"
+  - name: "tdd"
+    upstreamName: "tdd"
+    sourcePath: "skills/engineering/tdd/SKILL.md"
+    templatePath: "templates/skills/vendor/tdd/SKILL.md"
+    originalSha256: "5e6b9c16b547113e90afbb946489d1c1384be5c2128f0159bd0bee57251ecf08"
+    adaptedSha256: "cf0d45b48cb1142032c6eebc9708e107e802a0f4831f6fceee2c62f686a0ccdc"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Use ADF glossary and decision paths."
+      - "Preserve the red-before-green vertical-slice loop."
+    dependencies:
+      - "codebase-design"
+    resources:
+      - "mocking.md"
+      - "tests.md"
+  - name: "diagnosing-bugs"
+    upstreamName: "diagnosing-bugs"
+    sourcePath: "skills/engineering/diagnosing-bugs/SKILL.md"
+    templatePath: "templates/skills/vendor/diagnosing-bugs/SKILL.md"
+    originalSha256: "b9339b09ee3980808d8c5a35c7251b891b8b1e0036ec4ca37812b976ebddf6b6"
+    adaptedSha256: "96234b286e9ec85b4d276b19e6c97e61778802716b890241ed2479be75eb9d6b"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Use ADF glossary and decision paths."
+      - "Preserve the tight red-capable reproduction gate."
+    dependencies:
+      - "tdd"
+    resources:
+      - "scripts/hitl-loop.template.sh"
+  - name: "code-review"
+    upstreamName: "code-review"
+    sourcePath: "skills/engineering/code-review/SKILL.md"
+    templatePath: "templates/skills/vendor/code-review/SKILL.md"
+    originalSha256: "9cf46653dd9c710ea1e6c22423caf31a794c88773bc94bdaa23140277f470442"
+    adaptedSha256: "ef4e293894cb71ea6c4264acf3011413b811f48b92ecb449bc381c8ae2a32f8e"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Use local specs without assuming a configured issue tracker."
+      - "Run review axes sequentially when subagents are unavailable."
+      - "Keep the review read-only and inventory all writes."
+    dependencies:
+      []
+    resources:
+      []
+  - name: "writing-great-skills"
+    upstreamName: "writing-for-agents"
+    sourcePath: "skills/productivity/writing-for-agents/SKILL.md"
+    templatePath: "templates/skills/vendor/writing-great-skills/SKILL.md"
+    originalSha256: "a842323e664e5af104eac5c97ad22fda929ebeb62d81c501161ac1f6f482db58"
+    adaptedSha256: "e8c959429ee12fac68dbecc7afe7ad4c5e38bf17680ff71f4b1d9de1247dc089"
+    adaptations:
+      - "Normalize frontmatter to portable Agent Skills fields and MIT metadata."
+      - "Require explicit authorization for Git publication and a final file inventory."
+      - "Record upstream rename from writing-for-agents to the stable ADF name writing-great-skills."
+      - "Remove agent-specific invocation metadata for Codex and OpenCode portability."
+    dependencies:
+      []
+    resources:
+      - "SKILL-MECHANICS.md"

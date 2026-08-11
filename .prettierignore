@@ -1,0 +1,6 @@
+dist/
+node_modules/
+docs/design/adf-framework-design.md
+docs/plans/2026-08-10-adf-v0.1.0.md
+templates/**/*.hbs
+templates/skills/**

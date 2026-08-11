@@ -1,0 +1,31 @@
+schema_version: "1.0"
+
+bundle:
+  id: adf
+  name: Agentic Development Framework
+  version: 0.1.0
+  role: developer
+  description: A local, evidence-gated Spec Kit package for Codex and OpenCode projects.
+  author: ADF contributors
+  license: MIT
+
+requires:
+  speckit_version: ">=0.9.0"
+  tools: []
+  mcp: []
+
+provides:
+  extensions: []
+  presets:
+    - id: adf-guardrails
+      version: 0.1.0
+      priority: 10
+      strategy: append
+  steps:
+    - id: adf-validate-gate
+      version: 0.1.0
+  workflows:
+    - id: adf-day-zero
+      version: 0.1.0
+
+tags: [agentic-development, codex, opencode, spec-driven-development]

@@ -1,0 +1,12 @@
+schema_version: "1.0"
+
+step:
+  id: adf-validate-gate
+  name: ADF Validate Gate
+  version: 0.1.0
+  author: ADF contributors
+  description: Pauses an ADF workflow for an explicit approve or reject verdict.
+  type: gate
+  message: Review the evidence for the active ADF gate before continuing.
+  options: [approve, reject]
+  on_reject: retry

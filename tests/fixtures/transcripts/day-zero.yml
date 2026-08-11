@@ -1,0 +1,26 @@
+name: day-zero-to-g4-contract
+events:
+  - actor: user
+    action: Inicia el proyecto.
+  - actor: agent
+    action: project-intake
+  - actor: agent
+    action: inspect-before-asking
+  - actor: agent
+    action: prepare-g1-evidence
+  - actor: human
+    action: gate-g1
+  - actor: spec-kit
+    action: feature-specify
+  - actor: human
+    action: gate-g2
+  - actor: spec-kit
+    action: feature-plan
+  - actor: human
+    action: gate-g3
+  - actor: spec-kit
+    action: session-contract
+  - actor: human
+    action: gate-g4
+  - actor: harness
+    action: stop-before-implementation

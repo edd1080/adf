@@ -1,0 +1,4 @@
+{
+  "default_integration": "codex",
+  "installed_integrations": ["codex", "opencode"]
+}

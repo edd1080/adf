@@ -1,0 +1,75 @@
+{
+  "name": "adf-harness-kit",
+  "version": "0.1.0",
+  "description": "A reproducible agentic development harness built on GitHub Spec Kit.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "adf-harness-kit": "dist/cli.js",
+    "adf": "dist/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edd1080/adf.git"
+  },
+  "homepage": "https://github.com/edd1080/adf#readme",
+  "bugs": {
+    "url": "https://github.com/edd1080/adf/issues"
+  },
+  "keywords": [
+    "agentic-development",
+    "ai-agents",
+    "codex",
+    "opencode",
+    "spec-kit",
+    "development-harness"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "schemas",
+    "README.md",
+    "docs/day-zero.md",
+    "docs/architecture.md",
+    "docs/upgrades.md",
+    "docs/troubleshooting.md",
+    "docs/design",
+    "docs/verification",
+    "CHANGELOG.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:release": "ADF_RELEASE_NETWORK=1 vitest run tests/clean-room/npm-pack.test.ts",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "verify": "npm run typecheck && npm run lint && npm test && npm run build && npm run format:check",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.7.0",
+    "commander": "^15.0.0",
+    "execa": "^10.0.1",
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.2.0",
+    "eslint": "^10.8.1",
+    "prettier": "^3.9.6",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.10"
+  }
+}

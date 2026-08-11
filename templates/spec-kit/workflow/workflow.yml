@@ -1,0 +1,104 @@
+schema_version: "1.0"
+
+workflow:
+  id: adf-day-zero
+  name: ADF Day Zero to Implementation Contract
+  version: 0.1.0
+  author: ADF contributors
+  description: Builds project context and a verified feature contract, then stops at G4 before implementation.
+
+requires:
+  speckit_version: ">=0.9.0"
+  integrations:
+    any: [codex, opencode]
+
+inputs:
+  project_goal:
+    type: string
+    required: true
+    prompt: Describe the project or the next feature to prepare.
+  integration:
+    type: string
+    required: true
+    enum: [codex, opencode]
+    prompt: Select the active agent integration.
+  g1_verdict:
+    type: string
+    default: ""
+    enum: ["", approve, reject]
+  g2_verdict:
+    type: string
+    default: ""
+    enum: ["", approve, reject]
+  g3_verdict:
+    type: string
+    default: ""
+    enum: ["", approve, reject]
+  g4_verdict:
+    type: string
+    default: ""
+    enum: ["", approve, reject]
+
+steps:
+  - id: bootstrap-check
+    type: prompt
+    integration: "{{ inputs.integration }}"
+    prompt: >-
+      Run adf doctor. Read AGENTS.md, .harness/STATE.md, and the project-intake skill.
+      Do not write implementation code. Report any harness blocker before continuing.
+
+  - id: intake-scan
+    type: prompt
+    integration: "{{ inputs.integration }}"
+    prompt: >-
+      Execute the ADF project-intake procedure for: {{ inputs.project_goal }}.
+      Inventory existing evidence, distinguish facts from proposals, create only missing
+      context documents, and prepare the G1 evidence checklist. Do not implement product code.
+
+  - id: gate-g1
+    type: gate
+    message: Review the project brief, PRD, constitution, references, open questions, and documentation map. Approve project context readiness?
+    options: [approve, reject]
+    on_reject: retry
+    verdict_input: g1_verdict
+
+  - id: feature-specify
+    command: speckit.specify
+    integration: "{{ inputs.integration }}"
+    input:
+      args: "{{ inputs.project_goal }}"
+
+  - id: gate-g2
+    type: gate
+    message: Review the feature specification, user journeys, requirements, assumptions, and edge cases. Approve specification readiness?
+    options: [approve, reject]
+    on_reject: retry
+    verdict_input: g2_verdict
+
+  - id: feature-plan
+    command: speckit.plan
+    integration: "{{ inputs.integration }}"
+    input:
+      args: "{{ inputs.project_goal }}"
+
+  - id: gate-g3
+    type: gate
+    message: Review architecture, affected files, risk controls, verification strategy, and rollback considerations. Approve plan readiness?
+    options: [approve, reject]
+    on_reject: retry
+    verdict_input: g3_verdict
+
+  - id: session-contract
+    command: speckit.tasks
+    integration: "{{ inputs.integration }}"
+    input:
+      args: >-
+        {{ inputs.project_goal }}. Produce test-first executable tasks, map every task to
+        acceptance evidence, and update the ADF session contract without implementing code.
+
+  - id: gate-g4
+    type: gate
+    message: Review tasks, session scope, Definition of Done, verification commands, and rollback boundary. Approve the implementation contract? This workflow stops after approval.
+    options: [approve, reject]
+    on_reject: retry
+    verdict_input: g4_verdict

@@ -1,0 +1,39 @@
+scenarios:
+  - name: no-documentation
+    kind: greenfield
+    documents: []
+    expectedPath: guided-interview
+    expectedLevel: none
+  - name: partial-documentation
+    kind: greenfield
+    documents:
+      - path: docs/product/brief.md
+        status: draft
+        authority: product
+    expectedPath: gap-completion
+    expectedLevel: partial
+  - name: complete-documentation
+    kind: greenfield
+    documents:
+      - path: docs/product/brief.md
+        status: approved
+        authority: product
+      - path: docs/product/prd.md
+        status: approved
+        authority: product
+      - path: .specify/memory/constitution.md
+        status: approved
+        authority: technical
+      - path: docs/references/index.md
+        status: review
+        authority: reference
+    expectedPath: consistency-audit
+    expectedLevel: complete
+  - name: brownfield
+    kind: brownfield
+    documents:
+      - path: README.md
+        status: observational
+        authority: observational
+    expectedPath: brownfield-observation
+    expectedLevel: none

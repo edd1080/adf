@@ -1,0 +1,4 @@
+{
+  "default_integration": "opencode",
+  "installed_integrations": ["opencode"]
+}

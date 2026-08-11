@@ -1,0 +1,62 @@
+- name: first project message
+  prompt: Inicia el proyecto.
+  lifecycle: intake
+  expect: [project-intake]
+  forbid: [feature-close, bug-fix]
+  gate: G1
+
+- name: resume active handoff
+  prompt: Continúa el proyecto desde el handoff activo.
+  lifecycle: active-handoff
+  expect: [session-start]
+  forbid: [project-intake, session-end]
+  gate: G4
+
+- name: route feature implementation context
+  prompt: Implementa el flujo de aprobación para administradores.
+  lifecycle: active-feature
+  expect: [context-router]
+  forbid: [project-intake, feature-close]
+  gate: G4
+
+- name: diagnose a reported bug
+  prompt: Corrige el bug que duplica el cobro al reintentar.
+  lifecycle: active-feature
+  expect: [bug-fix]
+  forbid: [project-intake, feature-close]
+  gate: G4
+
+- name: verify a slice
+  prompt: Verifica si este bloque está listo y demuestra cada criterio.
+  lifecycle: active-feature
+  expect: [verify-work]
+  forbid: [project-intake, session-end]
+  gate: G5
+
+- name: close a verified feature
+  prompt: Cierra la feature 014 y valida su definición de terminado.
+  lifecycle: active-feature
+  expect: [feature-close]
+  forbid: [project-intake, session-end]
+  gate: G6
+
+- name: end only the current session
+  prompt: Cierra la sesión y prepara el handoff para mañana.
+  lifecycle: active-feature
+  expect: [session-end]
+  forbid: [project-intake, feature-close]
+  gate: none
+
+- name: review is not intake
+  prompt: Review this PR against its specification.
+  lifecycle: ready
+  expect: [code-review]
+  forbid: [project-intake, feature-close]
+  gate: none
+
+- name: typo stays a quick change
+  prompt: Fix the typo in the settings heading.
+  lifecycle: ready
+  expect: []
+  forbid: [project-intake, bug-fix, feature-close]
+  gate: G4

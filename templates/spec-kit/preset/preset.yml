@@ -1,0 +1,23 @@
+schema_version: "1.0"
+
+preset:
+  id: adf-guardrails
+  name: ADF Guardrails
+  version: 0.1.0
+  description: Adds ADF evidence gates and implementation boundaries to Spec Kit plans.
+  author: ADF contributors
+  repository: https://github.com/edd1080/adf
+  license: MIT
+
+requires:
+  speckit_version: ">=0.9.0"
+
+provides:
+  templates:
+    - type: template
+      name: plan-template
+      file: templates/plan-addendum.md
+      description: Appends ADF gates, evidence mapping, and session boundaries to plans.
+      strategy: append
+
+tags: [agentic-development, evidence, guardrails]
