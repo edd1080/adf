@@ -6,7 +6,7 @@ ADF es un harness reproducible para iniciar y gobernar desarrollos con Codex u O
 
 ## Estado de `0.1.0`
 
-Esta versión está preparada para publicarse como el paquete público `adf-harness-kit`. Ningún comando de ADF ejecuta commits, pushes, despliegues ni publicaciones del proyecto objetivo.
+Esta versión está publicada en npm como el paquete público `adf-harness-kit`. Ningún comando de ADF ejecuta commits, pushes, despliegues ni publicaciones del proyecto objetivo.
 
 ## Inicio rápido
 
