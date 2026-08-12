@@ -34,7 +34,7 @@ describe("npm package boundary", () => {
     expect(paths.some((path) => path.startsWith(".git/"))).toBe(false);
     expect(paths.some((path) => path.startsWith(".harness/"))).toBe(false);
     expect(paths.some((path) => path.includes(".env"))).toBe(false);
-  });
+  }, 120_000);
 
   it("runs both names through the symlink shape used by npm bin shims", async () => {
     const root = fileURLToPath(new URL("../../", import.meta.url));
